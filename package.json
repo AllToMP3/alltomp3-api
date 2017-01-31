@@ -1,14 +1,14 @@
 {
-  "name": "lyrics.ovh",
+  "name": "alltomp3.api",
   "version": "1.0.0",
-  "description": "Only the lyrics",
+  "description": "Tools to search for music, songs, youtube music videos, lyrics",
   "main": "index.js",
   "scripts": {
     "start": "node ."
   },
   "repository": "git@github.com:NTag/lyrics.ovh.git",
   "author": "Basile Bruneau <basilebruneau@gmail.com>",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "dependencies": {
     "alltomp3": "https://github.com/AllToMP3/alltomp3",
     "cors": "^2.8.1",
