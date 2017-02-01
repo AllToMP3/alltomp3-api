@@ -1,0 +1,82 @@
+FORMAT: 1A
+HOST: https://api.alltomp3.org/v1/
+
+# AllToMP3
+
+APIs to identify songs, find music videos...
+
+## Guess a song from a string [/guess-track/{query}]
+
+This access point can be used with the title of a YouTube music video to identify the song it contains (for example).
+
++ Parameters
+    + query: `Imagine Dragons - on top of the world (lyrics only) [HD]` (string) - Your query
+
+### Guess a song contained in a complex string [GET]
+
++ Attributes
+    + title (string) - The title of the song
+    + artistName (string) - The name of the artist
+
++ Response 200 (application/json)
+
+        {
+            "title": "On Top of the World",
+            "artistName": "Imagine Dragons"
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": "No track found"
+        }
+   
+     
+## Find a YouTube music video [/find-music-video/{?artist,title,duration}]
+
+Find the YouTube videos susceptible to contain the song you are looking for.
+
++ Parameters
+    + artist: `Imagine Dragons` (string) - The name of the artist
+    + title: `On Top of the World` (string) - The title of the song
+    + duration: `192` (number, optional) - The duration of the song. Even if this parameter is optional, it strongly helps finding the best videos.
+
+### Find music videos containing a specific song [GET]
+
++ Attributes
+    + id (string) - The ID of the YouTube video
+    + url (string) - The URL of the video
+    + title (string) - The title of the videos
+    + hd (boolean) - True if the video quality if greater than 720p, or False
+    + duration (number) - The duration of the video in seconds
+    + views (number) - The number of views of the video
+    + score (number) - The highest this number, the likeliest the video matches the song query
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "g8PrTzLaLHc",
+                "url": "https://www.youtube.com/watch?v=g8PrTzLaLHc",
+                "title": "Imagine Dragons - On Top of the World -",
+                "hd": false,
+                "duration": 191,
+                "views": 27161298,
+                "score": -8.809913015076221
+            },
+            {
+                "id": "Nwvil057g-g",
+                "url": "https://www.youtube.com/watch?v=Nwvil057g-g",
+                "title": "On Top of the World - Imagine Dragons",
+                "hd": true,
+                "duration": 191,
+                "views": 2882744,
+                "score": -9.406690333881617
+            }
+        ]
+
++ Response 404 (application/json)
+
+        {
+            "error": "No videos found"
+        }
